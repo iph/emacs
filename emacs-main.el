@@ -11,7 +11,6 @@
                "http://melpa.milkbox.net/packages/") t)
 
 
-(add-to-list 'load-path "~/go/src/github.com/dougm/goflymake")
 ;; Pretty 3P packages.
 (require 'autopair)
 (require 'expand-region)
@@ -34,22 +33,11 @@
 (require 'color-theme)
 (require 'markdown-mode)
 (require 'nlinum)
-(require 'go-flymake)
-
 (global-company-mode t)
-
-
 
 (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
 (add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
 
-(setenv "GOPATH" "~/go")
-
-(add-hook 'go-mode-hook (lambda ()
-                          (set (make-local-variable 'company-backends) '(company-go))
-                          (company-mode)))
-
-(add-hook 'before-save-hook #'gofmt-before-save)
 
 ;; ido specifics for better file matching.
 (setq ido-enable-flex-matching t)
@@ -119,7 +107,7 @@
 
 ;; Company autocomplete stuff
 (setq company-tooltip-limit 20)                      ; bigger popup window
-(setq company-idle-delay .5)                         ; decrease delay before autocompletion popup shows
+(setq company-idle-delay .7)                         ; decrease delay before autocompletion popup shows
 (setq company-echo-delay 0)                          ; remove annoying blinking
 (setq org-todo-keyword-faces
       '(
@@ -149,6 +137,6 @@
  '(company-tooltip-selection ((t (:background "steelblue" :foreground "white"))))
  '(org-agenda-done ((t (:foreground "chartreuse4"))))
  '(org-done ((t (:foreground "chartreuse3"))))
- '(org-level-3 ((t (:inherit outline-5))))
+ ;'(org-level-3 ((t (:inherit outline-5))))
  '(org-todo ((t (:foreground "firebrick3")))))
 ;(setenv "RUST_SRC_PATH" "/usr/local/src/rust/src")
