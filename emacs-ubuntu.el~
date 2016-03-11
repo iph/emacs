@@ -1,0 +1,5 @@
+(add-to-list 'load-path "/Users/seamyers/go/src/github.com/dougm/goflymake")
+(require 'flycheck)
+(require 'go-flycheck)
+(setenv "GOPATH" "/Users/seamyers/go")
+(setenv "PATH" (concat (getenv "PATH") ":" "/usr/local/go/bin" ":" "/usr/local/bin" ":" "/usr/local" ":" "/Users/seamyers/Downloads/go_appengine/goroot/bin"))

@@ -169,5 +169,4 @@
  '(org-done ((t (:foreground "chartreuse3"))))
  ;'(org-level-3 ((t (:inherit outline-5))))
  '(org-todo ((t (:foreground "firebrick3")))))
-;(setenv "RUST_SRC_PATH" "/usr/local/src/rust/src")
 (put 'temporary-file-directory 'standard-value '((file-name-as-directory "/tmp")))
