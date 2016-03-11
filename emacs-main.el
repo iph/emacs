@@ -15,14 +15,15 @@
 (require 'autopair)
 (require 'expand-region)
 (require 'multiple-cursors)
-(require 'undo-tree)
 (require 'rainbow-delimiters)
 (require 'key-chord)
+(require 'undo-tree)
 (require 'ido)
 (require 'web-mode)
 (require 'emmet-mode)
 (require 'ace-jump-mode)
 (require 'magit)
+
 (require 'afternoon-theme)
 (require 'browse-kill-ring)
 (require 'expand-region)
@@ -33,16 +34,45 @@
 (require 'color-theme)
 (require 'markdown-mode)
 (require 'nlinum)
+(require 'helm)
+(require 'helm-config)
+
+;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
+;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
+;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
+(global-set-key (kbd "C-c h") 'helm-command-prefix)
+(global-unset-key (kbd "C-x c"))
+
+(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
+(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB works in terminal
+(define-key helm-map (kbd "C-]")  'helm-select-action) ; list actions using C-z
+
+(when (executable-find "curl")
+  (setq helm-google-suggest-use-curl-p t))
+
+(setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
+      helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
+      helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
+      helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
+      helm-ff-file-name-history-use-recentf t)
+
+(helm-mode 1)
 (global-company-mode t)
+(projectile-global-mode)
+(setq projectile-completion-system 'helm)
+(helm-projectile-on)
+
+(setq projectile-indexing-method 'native)
+(setq projectile-enable-caching t)
 
 (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
 (add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
 
 
 ;; ido specifics for better file matching.
-(setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
-(ido-mode t)
+;;(setq ido-enable-flex-matching t)
+;;(setq ido-everywhere t)
+;;(ido-mode t)
 
 ;; Remove annoyingness that is emacs.
 (menu-bar-mode -1)
@@ -55,7 +85,7 @@
 ;; Package specific variables.
 (autopair-global-mode 1)
 (key-chord-mode 1)
-(ido-mode t)
+;;(ido-mode t)
 
 ;; Normal key bindings
 (global-set-key "\C-cl" 'org-store-link)
@@ -140,3 +170,4 @@
  ;'(org-level-3 ((t (:inherit outline-5))))
  '(org-todo ((t (:foreground "firebrick3")))))
 ;(setenv "RUST_SRC_PATH" "/usr/local/src/rust/src")
+(put 'temporary-file-directory 'standard-value '((file-name-as-directory "/tmp")))

@@ -1,8 +1,7 @@
-(add-to-list 'load-path "~/Documents/racer/editors")
 (add-to-list 'load-path "/Users/seamyers/go/src/github.com/dougm/goflymake")
+(add-to-list 'load-path "/Users/seamyers/go/src/github.com/nsf/gocode/emacs-company")
 (require 'flycheck)
 (require 'go-flycheck)
-(require 'racer)
 (setenv "GOPATH" "/Users/seamyers/go")
 (setenv "PATH" (concat (getenv "PATH") ":" "/Users/seamyers/go/bin" ":" "/usr/local/bin" ":" "/usr/local/Cellar/go/1.4/libexec/bin" ":" "/Users/seamyers/Downloads/go_appengine/goroot/bin"))
 (setq exec-path (split-string (getenv "PATH") path-separator))
@@ -11,8 +10,8 @@
                           (set (make-local-variable 'company-backends) '(company-go))
                           (company-mode)))
 
+(setq gofmt-command "goimport")
 (add-hook 'before-save-hook #'gofmt-before-save)
-
 
 (setq temporary-file-directory "~/.emacs.d/tmp/")
 (add-hook 'go-mode-hook 'flycheck-mode)
