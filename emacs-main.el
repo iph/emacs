@@ -2,17 +2,9 @@
 ;; Need package to load rest of them..
 (require 'package)
 (package-initialize)
-(add-to-list 'package-archives
-             '("marmalade" .
-               "http://marmalade-repo.org/packages/"))
-
-(add-to-list 'package-archives
-             '("melpa" .
-               "http://melpa.milkbox.net/packages/") t)
-
 
 ;; Pretty 3P packages.
-(require 'autopair)
+(require 'flex-autopair)
 (require 'expand-region)
 (require 'multiple-cursors)
 (require 'rainbow-delimiters)
@@ -23,16 +15,15 @@
 (require 'emmet-mode)
 (require 'ace-jump-mode)
 (require 'magit)
-
-(require 'afternoon-theme)
 (require 'browse-kill-ring)
 (require 'expand-region)
 (require 'rust-mode)
 (require 'go-mode)
-(require 'color-theme)
 (require 'markdown-mode)
 (require 'nlinum)
 
+
+(load-theme 'afternoon t)
 
 
 (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
@@ -53,7 +44,6 @@
 (pending-delete-mode t)
 
 ;; Package specific variables.
-(autopair-global-mode 1)
 (key-chord-mode 1)
 ;;(ido-mode t)
 
