@@ -24,5 +24,6 @@
 (package-install 'nlinum)
 (package-install 'rust-mode)
 (package-install 'go-mode)
+(package-install 'eglot)
 (require 'web-mode)
 (package-install 'emmet-mode)
